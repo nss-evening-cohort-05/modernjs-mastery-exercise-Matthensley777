@@ -4,6 +4,7 @@ $(document).ready(function() {
             const genders = [];
             const teams = [];
 
+            //loop for each json file and write to dom function, I think I"m going to re-write this with for loops
             const writeToDom = (userSelectedTeam) => {
                 const domString = "";
                 let selectedTeam = userSelectedTeam;
@@ -11,11 +12,12 @@ $(document).ready(function() {
                     if (currentTeam.name === selectedTeam) {
                         console.log("currentTeam", currentTeam.name);
                         characters.forEach((currentCharacters) => {
-                            if (currentCharacters.name === currentTeam.id) {
+                            if (currentCharacters.team_id === currentTeam.id) {
                                 console.log("currentCharacters", currentCharacters.name);
                                 genders.forEach((currentGender) => {
                                     if (currentGender.type === currentCharacters.gender_id) {
-                                        
+                                    	 console.log("currentGender", currentGender);
+
                                     }
                                 });
                             }
@@ -24,7 +26,7 @@ $(document).ready(function() {
                 });
                 $("#output").html(domString);
             };
-
+            //ajax and promise for teams
             const teamsJSON = () => {
                 return new Promise((resolve, reject) => {
                     $.ajax("./db/teams.json").done((data1) => {
@@ -34,7 +36,7 @@ $(document).ready(function() {
                     });
                 });
             };
-
+            //ajax and promise for characters
             const charactersJSON = () => {
                 return new Promise((resolve, reject) => {
                     $.ajax("./db/characters.json").done((data2) => {
@@ -44,7 +46,7 @@ $(document).ready(function() {
                     });
                 });
             };
-
+            //ajax and promise for gender
             const gendersJSON = () => {
                 return new Promise((resolve, reject) => {
                     $.ajax("./db/genders.json").done((data3) => {
@@ -70,7 +72,7 @@ $(document).ready(function() {
 
             });
             $("#avengers").click((e) => {
-                teamsJSON();
+                charactersJSON();
                 console.log("avengers", avengers);
                 writeToDom(e.target.id);
             });
