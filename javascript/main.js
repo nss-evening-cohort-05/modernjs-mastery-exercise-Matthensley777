@@ -1,12 +1,5 @@
 $(document).ready(function() {
 
-    // let characters = [];
-    // let genders = [];
-    // let teams = [];
-    // let avengers = "";
-    // let xMen = "";
-    // let guardians = "";
-    // let superHeroArray = "";
 
 
     // my Write To Dom function 
@@ -17,9 +10,9 @@ $(document).ready(function() {
                 console.log(superHeroArray[g]);
                 // domString += `<div class="row">`;
                 domString += `<div id="rows" class="col-xs-6 col-md-3">;`
+                domString += `<img src="${superHeroArray[g].image}">`;
                 domString += `<h4>${superHeroArray[g].name}</h4>`;
                 domString += `<p>${superHeroArray[g].description}</p>`;
-                domString += `<img ${superHeroArray[g].image}>`;
                 domString += `</div></div>`
 
             }
